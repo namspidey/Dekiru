@@ -3,45 +3,100 @@ import { FaArrowLeft } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
 import { Tree } from 'primereact/tree';
 const Study = () => {
-    const data = [{
-        key: '0',
-        label: 'Documents',
-        data: 'Documents Folder',
-        icon: 'pi pi-fw pi-inbox',
-        children: [
-            {
-                key: '0-0',
-                label: 'Work',
-                data: 'Work Folder',
-                icon: 'pi pi-fw pi-cog',
-                children: [
-                    { key: '0-0-0', label: 'Expenses.doc', icon: 'pi pi-fw pi-file', data: 'Expenses Document' },
-                    { key: '0-0-1', label: 'Resume.doc', icon: 'pi pi-fw pi-file', data: 'Resume Document' }
-                ]
-            },
-            {
-                key: '0-1',
-                label: 'Home',
-                data: 'Home Folder',
-                icon: 'pi pi-fw pi-home',
-                children: [{ key: '0-1-0', label: 'Invoices.txt', icon: 'pi pi-fw pi-file', data: 'Invoices for this month' }]
-            }
-        ]
-    }]
+    const data = [
+        {
+            key: '0',
+            label: 'Documents1',
+            data: 'Documents Folder',
+            children: [
+                {
+                    key: '0-0',
+                    label: '',
+                    data: { name: 'Bài 1', time: '30 phút' },
+                    children: []
+                },
+                {
+                    key: '0-1',
+                    label: '',
+                    data: { name: 'Bài 2', time: '25 phút' },
+                    children: []
+                },
+                {
+                    key: '0-2',
+                    label: '',
+                    data: { name: 'Bài 3', time: '45 phút' },
+                    children: []
+                }
+            ]
+        },
+        {
+            key: '1',
+            label: 'Documents2',
+            data: 'Documents Folder',
+            children: [
+                {
+                    key: '0-0',
+                    label: '',
+                    data: { name: 'Bài 1', time: '30 phút' },
+                    children: []
+                },
+                {
+                    key: '0-1',
+                    label: '',
+                    data: { name: 'Bài 2', time: '25 phút' },
+                    children: []
+                },
+                {
+                    key: '0-2',
+                    label: '',
+                    data: { name: 'Bài 3', time: '45 phút' },
+                    children: []
+                },
+                {
+                    key: '0-3',
+                    label: '',
+                    data: { name: 'Bài 3', time: '45 phút' },
+                    children: []
+                }
+            ]
+        }
+    ];
+
+    const nodeTemplate = (node, options) => {
+        return (
+            <div className='d-flex p-2  ps-3 '>
+                <div>{node.label}</div>
+                <div className='flex-grow-1'>
+                    <p className='p-0 m-0'>{node.data.name}</p>
+                    <p className='p-0 m-0'>{node.data.time}</p>
+                </div>
+                {/* <input type='checkbox' className='ms-auto custom-checkbox' /> */}
+            </div>
+        );
+    };
     const [nodes, setNodes] = useState(data);
+
+
     return (
         <div className='study'>
-            <div className='p-2 bg-dark text-white ps-3'>
+            <div className='p-3 bg-dark text-white ps-3 study-header'>
                 <FaArrowLeft /> Tieeengss Nhật sơ câps
 
             </div>
             <div className="card flex justify-content-center">
-                    <Tree value={nodes} className="w-full md:w-30rem" />
-                </div>
+
+            </div>
             <div className='d-flex w-100'>
-                
-                <div className='col-3 bg-light' style={{ overflowY: 'auto' }}>
-                    <div className='d-flex p-2 border-bottom border-dark ps-3'>
+
+                <div className='col-3 bg-light' style={{
+                    position: 'sticky',
+                    top: 0,  // Đặt ở phía trên cùng của màn hình
+                    overflowY: 'auto',
+                    height: '100vh' // Chiều cao của div
+                }}>
+
+                    <Tree value={nodes} nodeTemplate={nodeTemplate} className="w-full md:w-30rem " />
+                    {/* <div className='d-flex p-2 border-bottom border-dark ps-3'>
                         <div></div>
                         <div className='flex-grow-1'>
                             <p className='p-0 m-0'>Bài 1</p>
@@ -66,13 +121,13 @@ const Study = () => {
                             <p className='p-0 m-0'>30 phút</p>
                         </div>
                         <input type='checkbox' className='ms-auto custom-checkbox' />
-                    </div>
+                    </div> */}
 
                 </div>
                 <div className='col-9 bg-white'>
                     <div className='p-2'>
-                        <div className='me-3'><FaClock /> 10 phút
-                        </div>
+                        {/* <div className='me-3'><FaClock /> 10 phút
+                        </div> */}
                         <div>
 
                         </div>
@@ -88,7 +143,7 @@ const Study = () => {
 
                     <div className='p-2  pe-5'>
                         <h3 className='ps-5'>Video</h3>
-                        <iframe src="https://drive.google.com/file/d/1iqnulJ7QNHjArpzVhZdXC242l7NglLKc/preview" width="1080" height="630" allow="autoplay"></iframe>
+                        <iframe className='ps-5' src="https://drive.google.com/file/d/1iqnulJ7QNHjArpzVhZdXC242l7NglLKc/preview" width="1080" height="600" allow="autoplay"></iframe>
                     </div>
                 </div>
 

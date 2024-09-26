@@ -135,3 +135,63 @@ cursor: pointer;
   padding-left: 3rem;
   padding-right: 3rem;
 }
+
+.banner-1{
+  background-image: linear-gradient(to right, #03748d, #0300b08f);
+}
+
+.progress-bar{
+  width: 100%;
+  height: 20px;
+  
+}
+
+.progress-bar::-webkit-progress-value {
+  background-image: linear-gradient( 109.6deg, rgb(110, 251, 164) 11.2%, rgba(156,252,248,1) 91.1% );
+}
+
+.progress-bar1{
+  width: 90%;
+  
+  
+}
+.progress-bar1::-webkit-progress-value {
+  background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+  
+}
+
+.home-item span{
+  background-color: #0099ff3d;
+  color: blue;
+  font-size: smaller;
+}
+
+.star{
+  color: rgba(255, 196, 0, 0.801);
+ 
+}
+
+.study-header{
+  background-image: linear-gradient(to right, #0f0c29, #483fa7, #24243e);
+}
+
+.p-tree ul {
+  list-style: none; /* Loại bỏ chấm tròn */
+  padding-left: 0;  /* Loại bỏ khoảng cách thụt lề */
+}
+
+.p-tree li {
+  margin-left: 0; /* Đảm bảo không có thụt lề */
+}
+.p-tree button{
+  margin-left: 1rem;
+}
+.p-treenode-content {
+  display: flex; /* Đảm bảo rằng nút và nội dung cũng được hiển thị theo hàng */
+ border-bottom: black 1px solid;
+ min-height: 4rem;
+ align-items: center;
+}
+
+
+
