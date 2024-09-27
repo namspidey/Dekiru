@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Lấy URL từ biến môi trường
-const API_URL = "https://localhost:7233";
+const API_URL = "https://lombeo-api-authorize.azurewebsites.net";
 
 const axiosInstance = axios.create({
   baseURL: API_URL, // Đảm bảo API_URL đã được định nghĩa
