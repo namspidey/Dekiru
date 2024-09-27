@@ -13,7 +13,7 @@ const Home = () => {
     const handleClick = (option) => {
         setActiveOption(option);
     };
-
+    const userData = JSON.parse(localStorage.getItem('userData'));
 
     return (
         <div className='home'>
@@ -29,7 +29,7 @@ const Home = () => {
                                     </div>
                                     <div className='p-3 d-flex align-items-center justify-content-center'>
                                         <div className='mt-2'>
-                                            <h5>Do Dang Long</h5>
+                                            <h5>{userData != null ? userData.username : "Guest"}</h5>
                                             <p>Truong DH FPT</p>
                                         </div>
 
