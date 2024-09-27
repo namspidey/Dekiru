@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { CgProfile } from "react-icons/cg";
+import { GiWatch } from "react-icons/gi";
+import { FaListUl } from "react-icons/fa";
+import { GrCertificate } from "react-icons/gr";
 
 const Course = () => {
     const [activeSection, setActiveSection] = useState('intro'); // Khởi tạo trạng thái cho phần được chọn
+    
 
     const scrollToSection = (sectionId) => {
         document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
@@ -21,10 +25,21 @@ const Course = () => {
                     <div className='mt-5'>
                         <button className='btn btn-lg btn-success'>Đăng ký miễn phí</button>
                     </div>
-                    <div className='m-3'>
-                        <span className='bg-primary rounded p-1 me-2'>38 giờ</span>
-                        <span className='bg-primary rounded p-1 me-2'>38 giờ</span>
-                        <span className='bg-primary rounded p-1 me-2'>38 giờ</span>
+                    <div className='mt-3  d-flex'>
+                        <div className='rounded p-1 me-2 course-ic ' style={{ width: 'fit-content' }}>
+                            <span><GiWatch className='' /></span> 38 giờ
+                        </div>
+
+                        <div className='rounded p-1 me-2 course-ic' style={{ width: 'fit-content' }}>
+                            <span><FaListUl className='' /></span> 38 giờ
+                        </div>
+
+                        <div className='rounded p-1 me-2 course-ic' style={{ width: 'fit-content' }}>
+                            <span><GrCertificate 
+                            className='' /></span> 38 giờ
+                        </div>
+
+                        
                     </div>
                 </div>
                 <div className='col-8'>
@@ -54,7 +69,7 @@ const Course = () => {
                 >
                     Đánh giá
                 </div>
-                
+
             </div>
 
             {/* Các phần nội dung */}
@@ -70,7 +85,7 @@ const Course = () => {
                 <h3>Đánh giá</h3>
                 <p>shikanoko nokonoko koshitantan</p>
             </div>
-            
+
         </div>
     );
 };

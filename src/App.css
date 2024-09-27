@@ -188,10 +188,28 @@ cursor: pointer;
 }
 .p-treenode-content {
   display: flex; /* Đảm bảo rằng nút và nội dung cũng được hiển thị theo hàng */
- border-bottom: black 1px solid;
+ border-bottom: rgb(180, 180, 180) 1px solid;
  min-height: 4rem;
  align-items: center;
 }
+.p-treenode-leaf button{
+  margin-left: 2rem;
+}
 
+.p-treenode-leaf:has(.study-active-node){
+  background-color: #0099ff52;
+}
 
+.course-ic{
+  background-color: #0099ff6c;
+}
+
+.node-ic i{
+  font-size: larger;
+}
+
+.table-full {
+  width: 100%; /* Chiều rộng của bảng */
+  border-collapse: collapse; /* Bỏ cách giữa các ô */
+}
 

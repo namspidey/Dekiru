@@ -30,7 +30,7 @@ const Quiz = () => {
                     </div>
 
                     <div className='ques-item bg-white p-5 m-4'>
-                        <p>1. Câu hỏi 1</p>
+                        <p>2. Câu hỏi 2</p>
                         <p>Nội dung...?</p>
                         <div className='ans'>
                             <div className='ans-item d-flex align-items-center'>
@@ -54,7 +54,7 @@ const Quiz = () => {
                     </div>
 
                     <div className='ques-item bg-white p-5 m-4'>
-                        <p>1. Câu hỏi 1</p>
+                        <p>3. Câu hỏi 3</p>
                         <p>Nội dung...?</p>
                         <div className='ans'>
                             <div className='ans-item d-flex align-items-center'>
