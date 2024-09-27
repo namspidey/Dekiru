@@ -213,3 +213,80 @@ cursor: pointer;
   border-collapse: collapse; /* Bỏ cách giữa các ô */
 }
 
+.header-left-bar div:hover{
+  color: blue;
+  border-bottom:2px solid  blue;
+}
+
+.home-notlogin-banner{
+  background-image: url('/public/banner1.jpg');
+  background-size: cover; /* Đảm bảo hình ảnh phủ toàn bộ div */
+  background-position: center;
+  position: relative;
+  
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* Đặt hình nền phía dưới */
+}
+
+.home-notlogin {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  z-index: -1;
+}
+
+
+
+
+.a1 {
+  background-color: rgba(6, 6, 204, 0.719);
+  color: white;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: larger;
+
+}
+
+.home-login{
+  background-color: rgba(255, 255, 255, 0.795);
+  width: 30rem;
+  display: inline-block;
+  margin: 4em;
+  margin-left: 10rem;
+  border-radius: 20px;
+  position: relative; /* Giữ vị trí tương đối so với cha */
+  z-index: 1; /* Tăng z-index để đảm bảo form trên cùng */
+}
+
+
+
+.bt-header{
+  border: transparent;
+  background-color: white;
+  
+}
+
+.p-menuitem{
+  
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: white;
+  text-decoration: none;
+  border-bottom: 1px rgb(209, 207, 207) solid;
+}
+
+.p-menuitem:hover{
+  background-color: rgb(240, 238, 238);
+}
+
+.p-menuitem-link{
+  text-decoration: none;
+  color: black;
+}
+
+
+

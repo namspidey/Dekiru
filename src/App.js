@@ -4,7 +4,7 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home';
 import { useState, useEffect } from 'react';
-
+//import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 import { Route, Routes, Link, NavLink, Navigate } from 'react-router-dom'
 import Course from './components/Course';
 import Study from './components/Study';
@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <Header isLogin={isLogin} logout={logout} setIsLogin={setIsLogin}/>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home isLogin={isLogin} logout={logout} setIsLogin={setIsLogin}/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup/>}/>
 
