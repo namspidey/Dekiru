@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Lấy URL từ biến môi trường
-const API_URL = "https://lombeo-api-authorize.azurewebsites.net";
+const API_URL = "https://localhost:7233";
 
 const axiosInstance = axios.create({
   baseURL: API_URL, // Đảm bảo API_URL đã được định nghĩa
@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
   },
 });
 
-// Nếu bạn có hàm getRequestHeaders, hãy định nghĩa nó ở đây
+// Hàm để lấy headers
 const getRequestHeaders = () => {
   const token = localStorage.getItem('token');
   return {
@@ -18,7 +18,7 @@ const getRequestHeaders = () => {
   };
 };
 
-// Sử dụng getRequestHeaders trong interceptor nếu cần
+// Sử dụng getRequestHeaders trong interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
     config.headers = { ...config.headers, ...getRequestHeaders() }; // Thêm headers

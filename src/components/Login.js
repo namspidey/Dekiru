@@ -16,10 +16,10 @@ const Login = ({ setIsLogin }) => { // Nhận setIsLogin như một prop
                 username: values.email, // Sử dụng email cho username
                 password: values.password,
             });
-            console.log(response.data);
+            console.log(response.data.data.token);
             if (response.data.success) {
                 localStorage.setItem('userData', JSON.stringify(response.data.data)); // Lưu toàn bộ dữ liệu
-                
+                localStorage.setItem('token', response.data.data.token);
                 // Cập nhật trạng thái đăng nhập trong App.js
                 setIsLogin(true); // Cập nhật trạng thái đăng nhập
                 nav('/'); // Chuyển hướng đến trang chính

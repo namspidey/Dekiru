@@ -38,6 +38,7 @@ function App() {
         <Route path='/quiz' element={<Quiz />} />
         <Route path='/notfound' element={<NotFound />} />
         <Route path='/speech' element={<Speech />} />
+        <Route path='/course/:courseId' element={<Course />} />
       </Routes>
     </div>
   );
