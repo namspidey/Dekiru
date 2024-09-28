@@ -1,19 +1,50 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Route, Routes, Link, NavLink } from 'react-router-dom'
-import { FaStar } from "react-icons/fa";
-import { FaStarHalfAlt } from "react-icons/fa";
-import { FaRegStar, FaGoogle, FaFacebook } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { FaStar, FaStarHalfAlt, FaRegStar, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Formik, Form, Field } from 'formik';
+import axiosInstance from '../api/axiosInstance'; // Import axiosInstance
 
 const Home = ({ isLogin, logout, setIsLogin }) => {
-
     const [activeOption, setActiveOption] = useState('Gợi ý');
+    const [courses, setCourses] = useState([]); // Danh sách khóa học
+    const [registeredCourses, setRegisteredCourses] = useState([]); // Danh sách khóa học đã đăng ký
     const navigate = useNavigate();
-    const handleClick = (option) => {
-        setActiveOption(option);
-    };
     const userData = JSON.parse(localStorage.getItem('userData'));
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await axiosInstance.get('/authen/course/get-all-course');
+                if (response.data.success) {
+                    setCourses(response.data.data); // Lưu danh sách khóa học
+                }
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        };
+
+        const fetchRegisteredCourses = async () => {
+            try {
+                const response = await axiosInstance.get('/authen/course/check-list-registered-course');
+                if (response.data.success) {
+                    setRegisteredCourses(response.data.data); // Lưu danh sách khóa học đã đăng ký
+                }
+            } catch (error) {
+                console.error('Error fetching registered courses:', error);
+            }
+        };
+
+        fetchCourses();
+        fetchRegisteredCourses();
+    }, []);
+
+    const handleClick = (courseId) => {
+        navigate(`/course/${courseId}`); // Chuyển hướng đến trang chi tiết khóa học
+    };
+
+    const isCourseRegistered = (courseId) => {
+        return registeredCourses.some(course => course.id === courseId);
+    };
 
     return (
         <div>
@@ -135,33 +166,47 @@ const Home = ({ isLogin, logout, setIsLogin }) => {
 
                         {activeOption === 'Gợi ý' ? (
                             <div className='home-courses d-flex flex-row p-2'>
-                                <div className='course-item m-2 rounded bg-light'>
-                                    <div className='img-container '>
-                                        <img className='img-fluid w-100 h-100 rounded-top' src='hashira.png'></img>
-                                    </div>
-                                    <div className='p-2 home-item ms-2'>
-                                        <span className='p-1 rounded '>Khóa học</span>
-                                        <p className='m-0 fs-5'>Sơ cấp</p>
-                                        <p className='fs-6 mb-0'>Hoai Nam</p>
-                                        <p className='mt-0 pt-0'>
-                                            <FaStar className='star' />
-                                            <FaStarHalfAlt className='star' />
-
-                                            <FaRegStar className='star' />
-
-
-                                        </p>
-                                        <button className='btn btn-primary float-end m-2 mb-3'>Đăng ký ngay</button>
-                                    </div>
+                        {courses.map(course => (
+                                    <div key={course.id} className='course-item m-2 rounded bg-light'>
+                                        <div className='img-container'>
+                                            <img className='img-fluid w-100 h-100 rounded-top' src={course.courseImage} alt={course.courseName} />
+                                        </div>
+                                        <div className='p-2 home-item ms-2'>
+                                            <span className='p-1 rounded'>Khóa học</span>
+                                            <p className='m-0 fs-5'>{course.courseName}</p>
+                                            <p className='fs-6 mb-0'>{course.authorId}</p>
+                                            <p className='mt-0 pt-0'>
+                                                <FaStar className='star'  />
+                                                <FaStarHalfAlt className='star'  />
+                                                <FaRegStar className='star'  />
+                                            </p>
+                                            <button className='btn btn-primary float-end m-2 mb-3' onClick={() => handleClick(course.id)}>
+                                        {isCourseRegistered(course.id) ? 'Vào học ngay' : 'Đăng ký ngay'}
+                                    </button>
                                 </div>
-
-
-
-
+                                    </div>
+                                ))}
                             </div>
                         ) : (
-                            <div>
-
+                            <div className='home-courses d-flex flex-row p-2'>
+                        {registeredCourses.map(course => (
+                            <div key={course.id} className='course-item m-2 rounded bg-light'>
+                                <div className='img-container'>
+                                    <img className='img-fluid w-100 h-100 rounded-top' src='hashira.png' alt={course.courseName} />
+                                </div>
+                                <div className='p-2 home-item ms-2'>
+                                    <span className='p-1 rounded'>Khóa học</span>
+                                    <p className='m-0 fs-5'>{course.courseName}</p>
+                                    <p className='fs-6 mb-0'>{course.authorId}</p>
+                                    <p className='mt-0 pt-0'>
+                                        <FaStar className='star' />
+                                        <FaStarHalfAlt className='star' />
+                                        <FaRegStar className='star' />
+                                    </p>
+                                    <button className='btn btn-primary float-end m-2 mb-3' onClick={() => handleClick(course.id)}>Vào học ngay</button>
+                                </div>
+                            </div>
+                        ))}
                             </div>
                         )}
                     </div>
