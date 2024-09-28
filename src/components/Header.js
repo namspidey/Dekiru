@@ -1,22 +1,30 @@
 import React, { useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import AvatarDropdown from './AvatarDropdown';
 
 import { Button } from 'primereact/button';
 import { Menu } from 'primereact/menu';
 import { Toast } from 'primereact/toast';
 const Header = ({ isLogin, logout, setIsLogin }) => {
     const navigate = useNavigate();
+    const [username, setUsername] = useState(''); // Khởi tạo state cho tên người dùng
 
     const handleLogout = () => {
         logout();
-        navigate('/');
+        localStorage.removeItem('userData'); // Xóa dữ liệu người dùng
+        navigate('/'); // Chuyển hướng về trang chính sau khi đăng xuất
     }
+
     useEffect(() => {
-        const loggedIn = localStorage.getItem('isLogin') === 'true'
-        setIsLogin(loggedIn)
-    }, [isLogin])
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const loggedIn = userData && userData.token; // Kiểm tra xem có token không
+        setIsLogin(!!loggedIn);
+        if (loggedIn) {
+            setUsername(userData.username || ''); // Cập nhật tên người dùng
+        } else {
+            setUsername(''); // Đặt lại tên người dùng nếu không đăng nhập
+        }
+    }, [setIsLogin, isLogin]);
 
     const menuRight = useRef(null);
     const toast = useRef(null);
